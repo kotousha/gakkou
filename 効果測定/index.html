@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+<style>
+    body {
+        margin: 0;
+        overflow-x: hidden; /* 横方向のスクロールを防ぐ */
+        /*background-color: #f0f0f0; デフォルトの背景色 */
+    }
+
+    .button-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .page-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease; /* colorもtransitionに追加 */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 1.2em; /*フォンサイズを大きく*/
+        background-color: #f8f8f8; /* ホバー前のデフォルトの背景色*/
+        /*color: inherit;  ホバー前の文字色を親要素から継承 */
+    }
+
+    .page-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        color: #fff; /* ホバー時の文字色を白に */
+    }
+
+    .dance-button {
+        background-color: rgba(255, 105, 180, 0.8); /* 淡いピンク */
+    }
+    .dance-button:hover{
+        background: rgba(255, 105, 180, 1);
+    }
+
+    .vtuber-button {
+        background-color: rgba(255, 105, 180, 0.8); /* 淡い水色 */
+    }
+    .vtuber-button:hover{
+        background: rgba(255, 105, 180, 1);
+    }
+
+    .artist-button {
+        background-color: rgba(255, 105, 180, 0.8); /* 淡いオレンジ */
+    }
+    .artist-button:hover{
+        background: rgba(255, 105, 180, 1);
+    }
+
+    .sanrio-button {
+        background-color: rgba(255, 105, 180, 0.8); /* 淡い紫 */
+    }
+    .sanrio-button:hover{
+        background: rgba(255, 105, 180, 1);
+    }
+
+     /* canvas要素のスタイル */
+    #backgroundCanvas {
+        position: fixed; /* 画面に固定 */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* 他のコンテンツより背面に表示 */
+        pointer-events: none; /* マウスイベントを透過 */
+    }
+</style>
+</head>
+<body>
+    <canvas id="backgroundCanvas"></canvas>
+
+    <header>
+        <h1>My favorite</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">TOP</a></li>
+                <li><a href="dance.html">ダンス</a></li>
+                <li><a href="vtuber.html">Vtuber</a></li>
+                <li><a href="artist.html">アーティスト</a></li>
+                <li><a href="sanrio.html">サンリオ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="top">
+            <h2>はじめに</h2>
+            <p>１年９組 大和田琴美です。<br>
+                ここでは、私の"好きなもの"についてたくさん紹介します！<br>
+                このサイトを通して、皆さんに新しい"好き"との出会いがあれば幸いです: )<br>
+            </p>
+            <div class="button-grid">
+            <a href="dance.html" class="page-button dance-button">ダンス</a>
+            <a href="vtuber.html" class="page-button vtuber-button">Vtuber</a>
+            <a href="artist.html" class="page-button artist-button">アーティスト</a>
+            <a href="sanrio.html" class="page-button sanrio-button">サンリオ</a>
+             </div>
+        </section>
+    </main>
+
+    <footer>
+        <small>&copy; 2025 好きなもの紹介</small>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('backgroundCanvas');
+        const ctx = canvas.getContext('2d');
+        const circles = [];
+        const numCircles = 15; // 生成する円の数
+        const circleColor = 'rgba(100, 201, 239, 0.2)'; // 半透明な水色
+
+        // キャンバスのサイズをウィンドウサイズに合わせる
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // ウィンドウのリサイズに合わせてキャンバスのサイズを調整
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // ランダムな値を生成する関数
+        function getRandom(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        // 円オブジェクトの作成
+        class Circle {
+            constructor() {
+                this.radius = getRandom(10, 130); // ランダムな半径
+                this.x = getRandom(0, canvas.width); // ランダムなX座標
+                this.y = canvas.height + this.radius; // 初期Y座標を画面下端より下に
+                this.speed = getRandom(1, 2); // ランダムな速度
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = circleColor;
+                ctx.fill();
+            }
+
+            update() {
+                this.y -= this.speed; // 円を上へ移動
+                this.draw();
+
+                // 円が画面上端より上に出たら配列から削除
+                if (this.y < -this.radius) {
+                    circles.splice(circles.indexOf(this), 1);
+                }
+            }
+        }
+
+        // 円を生成して配列に追加
+        function createCircle() {
+            if (circles.length < numCircles) {
+                circles.push(new Circle());
+            }
+        }
+
+        // アニメーションループ
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // キャンバスをクリア
+            circles.forEach(circle => {
+                circle.update();
+            });
+            createCircle(); // 新しい円を生成
+            requestAnimationFrame(animate); // 次のアニメーションフレームを要求
+        }
+
+        animate(); // アニメーションを開始
+    </script>
+
+
+</body>
+</html>
