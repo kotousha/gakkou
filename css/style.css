@@ -87,7 +87,7 @@ h3 {
  
 /*写真全部*/
     .image-text-container {
-        /*width: 750px;
+        /*width: 730px;
         /*border: 1px solid #ccc;*/
         overflow: auto; /* float解除 */
         margin-bottom: 10px; /* 必要に応じて */
@@ -145,57 +145,107 @@ footer {
     /*border-top: 1px solid #ddd;*/
 }
 
-@media screen and (max-width : 767px){
-    img {
-        max-width: 100%;
-    }
 
-    .global_navi ul {
+@media (max-width: 768px) {
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 350px; /* この最大幅が新しいliの幅に対応できるか確認してください */
+    margin: 0 auto;
+  }
+
+  nav ul li {
+    /* 「アーティスト」や「サンリオ」が収まるように、この幅を調整してください */
+    width: 120px; /* まずは120pxに増やしてみて、調整してください */
+    margin: 0.5em 1.5em;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  nav a {
+    padding: 0.8em 0.5em;
+    width: 120px;
+    display: block;
+  }
+
+  img{
+    max-width: 93%;
+    height: auto;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .image-text-container
+  .left-image
+  .left-image1
+  .left-image2
+  .left-image3{
+    margin: 0;
+    max-width: 100%;
+  }
+
+/* さらに小さい画面 (例: 480px以下) で1列にする場合の例
+@media (max-width: 480px) {
+    nav ul {
+        max-width: 250px; /* さらに幅を狭める */
+    /* }
+
+    nav ul li {
+        width: calc(100% - 3em); /* 1列に */
+        /* margin: 0.5em 1.5em;
+        margin-bottom: 30px;
+    }
+}  */
+
+    /* .global_navi ul {
+        display: flex;
         flex-wrap: wrap;
         justify-content: center;
         padding: 5px 0;
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0;
     }
 
 
 
-    .global_navi li {
-    width: 80px;
-    height: 50px;
+    .global_navi ul li {
+    flex-basis: calc(33.33%-10px);
     margin: 5px; /* li間の余白 */
-    background-color: lightgray;
-    display: flex; /* 内部のテキストを中央寄せにするため */
+    /* background-color: lightgray; */
+    /* display: flex; 内部のテキストを中央寄せにするため
     justify-content: center;
     align-items: center;
-    /* 1行に2つ並べる場合 */
-        flex-basis: calc(50% - 20px);
-        text-align: center;
-}
+    text-align: center;
+    box-sizing: border-box;
+} */
 
-    .global_navi a {
+    /* .global_navi ul li a {
         /* --- ここでスマホ版のナビ文字サイズを設定 --- */
-        font-size: 13px; /* 例: スマホではさらに小さくする */
-        padding: 10px 5px; /* スマホでのパディングを調整 */
+        /* font-size: 13px; 例: スマホではさらに小さくする */
+        /* padding: 10px 5px; スマホでのパディングを調整 */
+        /* white-space: normal; */
+        /* display: block;
         width: 100%;
-        box-sizing: border-box;
-    }
+        box-sizing: border-box; */
+    /* } */ 
 
-    header,
+    /* @media (max-width: 480px) {
+        #global_navi ul li {
+            /* 例えば、さらに狭い画面では1行に2つにする */
+            /*flex-basis: calc(50% - 10px); /* 1行に2つ並べる (左右5pxマージン) */
+       /* }
+        #global_navi ul li a {
+            font-size: 14px; /* 1行の項目が減るので、文字を少し大きくしても良い */
+       /* }*/
+
+   /* header,
     #body,
     #wrapper,
     #backgroundCanvas,
     #wrapper{
         width: 100%;
-    }
-
-    #global_navi ul li {
-        width: 100%;
-        padding: 0.5%;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    #global_navi ul li a {
-        margin: 0;
-    }
-
+    }*/
     
 }
