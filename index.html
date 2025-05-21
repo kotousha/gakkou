@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>My favorite</title>
     <link rel="stylesheet" href="css/style.css">
 <style>
     body {
@@ -35,7 +35,8 @@
         /*color: inherit;  ホバー前の文字色を親要素から継承 */
     }
 
-    .page-button:hover {
+    .wrapper {
+
         transform: translateY(-3px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         color: #fff; /* ホバー時の文字色を白に */
@@ -86,7 +87,7 @@
 
     <header>
         <h1>My favorite</h1>
-        <nav>
+        <nav id="global_navi">
             <ul>
                 <li><a href="index.html">TOP</a></li>
                 <li><a href="dance.html">ダンス</a></li>
@@ -105,10 +106,12 @@
                 このサイトを通して、皆さんに新しい"好き"との出会いがあれば幸いです: )<br>
             </p>
             <div class="button-grid">
-            <a href="dance.html" class="page-button dance-button">ダンス</a>
-            <a href="vtuber.html" class="page-button vtuber-button">Vtuber</a>
-            <a href="artist.html" class="page-button artist-button">アーティスト</a>
-            <a href="sanrio.html" class="page-button sanrio-button">サンリオ</a>
+             
+                    <a href="dance.html" class="page-button dance-button">ダンス</a>
+                    <a href="vtuber.html" class="page-button vtuber-button">Vtuber</a>
+                    <a href="artist.html" class="page-button artist-button">アーティスト</a>
+                    <a href="sanrio.html" class="page-button sanrio-button">サンリオ</a>
+        
              </div>
         </section>
     </main>

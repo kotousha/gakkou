@@ -2,7 +2,7 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-    padding-bottom: 60px;
+    padding-bottom: 0px;
     background: #fffacd;
     background-repeat: no-repeat;
     background-attachment: fixed; /* スクロールしても背景を固定 */
@@ -84,58 +84,118 @@ h3 {
     border-bottom:solid 3px #FFAFD7;
     padding: 5px;
 }
-.dance1 {
-    width: 350px;
-    height: auto;
-} 
-#dance p{
-    float: right;
-}
+ 
+/*写真全部*/
+    .image-text-container {
+        /*width: 750px;
+        /*border: 1px solid #ccc;*/
+        overflow: auto; /* float解除 */
+        margin-bottom: 10px; /* 必要に応じて */
+        margin-right: 0;
+    }
 
-.dance2{
-    width: 350px;
-    height: auto;
-}
-.dance3{
-    width: 350px;
-    height: auto;
-}
-.vtuber1{
-    width: 350px;
-    height: auto;
-    background-color: #1E2232;
-}
-.vtuber2{
-    width: 350px;
-    height: auto;
-    background-color: #64C8F0;
-}
-.artist1{
-    width: 350px;
-    height: auto;
-}
-.artist2{
-    width: 350px;
-    height: auto;
-}
-.artist3{
-    width: 350px;
-    height: auto;
-}
-.sanrio1{
-    width: 350px;
-    height: auto;
-}
+    .left-image {
+        width: 350px;
+        height: auto;
+        float: left;
+        margin-right: 15px;
+    }
+    .left-image1 {
+        width: 350px;
+        height: auto;
+        float: left;
+        margin-right: 15px;
+        background-color: #1E2232;
+    }
+    .left-image2 {
+        width: 350px;
+        height: auto;
+        float: left;
+        margin-right: 15px;
+        background-color: #64C8F0;
+    }
+    .left-image3 {
+        width: 350px;
+        height: auto;
+        float: left;
+        margin-right: 15px;
+        background-color: #348EC7;
+    }
+ 
 
+    /* リンクのテキストのスタイル */
+    a {
+    color: blue;
+    text-decoration: none; /* 下線を消す */
+    }
+
+    a:hover {
+    text-decoration: underline; /* ホバー時に下線を表示 */
+    }
+/*写真全部*/
 
 footer {
     text-align: center;
     padding: 3px 0;
-    background-color: rgba(255, 255, 255, 0.8); /* 半透明の白 */
+    background-color: rgba(255, 255, 255, 1); /* 半透明の白 */
     color: #555;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    border-top: 1px solid #ddd;
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    /*width: 100%;*/
+    /*border-top: 1px solid #ddd;*/
 }
 
+@media screen and (max-width : 767px){
+    img {
+        max-width: 100%;
+    }
+
+    .global_navi ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 5px 0;
+    }
+
+
+
+    .global_navi li {
+    width: 80px;
+    height: 50px;
+    margin: 5px; /* li間の余白 */
+    background-color: lightgray;
+    display: flex; /* 内部のテキストを中央寄せにするため */
+    justify-content: center;
+    align-items: center;
+    /* 1行に2つ並べる場合 */
+        flex-basis: calc(50% - 20px);
+        text-align: center;
+}
+
+    .global_navi a {
+        /* --- ここでスマホ版のナビ文字サイズを設定 --- */
+        font-size: 13px; /* 例: スマホではさらに小さくする */
+        padding: 10px 5px; /* スマホでのパディングを調整 */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    header,
+    #body,
+    #wrapper,
+    #backgroundCanvas,
+    #wrapper{
+        width: 100%;
+    }
+
+    #global_navi ul li {
+        width: 100%;
+        padding: 0.5%;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    #global_navi ul li a {
+        margin: 0;
+    }
+
+    
+}
